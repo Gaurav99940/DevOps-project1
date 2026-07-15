@@ -11,7 +11,8 @@ module "security_group" {
 }
 
 module "iam" {
-  source = "../../modules/iam"
+  source      = "../../modules/iam"
+  environment = var.environment
 }
 
 module "ec2" {
@@ -22,4 +23,5 @@ module "ec2" {
   subnet_id      = module.vpc.public_subnet_id
   sg_id          = module.security_group.sg_id
   instance_profile = module.iam.instance_profile
+	environment = var.environment
 }
